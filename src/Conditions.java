@@ -30,16 +30,29 @@ public class Conditions {
         new Wall(kw, 1, 5, Direction.EAST);
         new Thing(kw, 0, 1);
         
-        //an infinite loop
+        //an infinite loop asking the robot if the front is clear
         while(karel.frontIsClear()){
+            //move and turn left
             karel.move();
-            karel.turnLeft();
-            while(karel.canPickThing()){
+            //karel.turnLeft();
+            
+            //if there is something to pick up
+            if(karel.canPickThing()){
+                //pick up everything
                 karel.pickThing();
+                break;
+            }
+            //did karel hit a wall
+            if(!karel.frontIsClear()){
+                karel.turnLeft();
+                
+                
             }
         }
         karel.turnLeft();
         
         karel.canPickThing();
+        
+        
     }
 }
